@@ -62,6 +62,10 @@ async fn ping(ctx: &Context, msg: &Message) -> CommandResult {
 #[command]
 async fn localizacao(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
     let user_message = args.rest();
+    if user_message.len() != 8 || !user_message.chars().all(char::is_numeric) || user_message.is_empty() {
+        msg.reply(ctx, "CEP inválido").await?;
+        return Ok(());
+    }
     let api_return = get_cep_info(user_message.to_string()).await?;
     msg.reply(ctx, api_return).await?;
     Ok(())

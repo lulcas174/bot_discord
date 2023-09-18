@@ -670,6 +670,8 @@ dependencies = [
  "cargo-watch",
  "dotenv",
  "reqwest",
+ "serde",
+ "serde_json",
  "serenity",
  "tokio",
 ]
